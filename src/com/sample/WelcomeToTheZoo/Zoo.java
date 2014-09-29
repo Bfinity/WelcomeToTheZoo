@@ -75,7 +75,7 @@ public class Zoo {
 
     public void addAnimals(int penToAddIn, Animal aNewAnimal)
     {
-        if(zooPens.get(penToAddIn).howManyAnimalsInPen() < 5){
+        if(zooPens.get(penToAddIn).howManyAnimalsInPen() < 4){
         zooPens.get(penToAddIn).addAnimalsToPen(aNewAnimal);}
         else{
             System.out.println("This pen is full.");
@@ -84,8 +84,18 @@ public class Zoo {
 
     public void addAnimals(int penToAddIn, BabyAnimal aNewBabyAnimal)
     {
-        if(zooPens.get(penToAddIn).howManyBabyAnimalsInPen() < 11){
-        zooPens.get(penToAddIn).addAnimalsToPen(aNewBabyAnimal);}
+        if(zooPens.get(penToAddIn).howManyBabyAnimalsInPen() < 10)
+        {
+            if(zooPens.get(penToAddIn).isThereAMaleAndFemaleAdultInPen())
+            {
+                zooPens.get(penToAddIn).addAnimalsToPen(aNewBabyAnimal);
+            }
+            else
+            {
+                System.out.println("There is not a male and a female adult in this pen.");
+            }
+
+        }
         else{
             System.out.println("This pen is full.");
         }

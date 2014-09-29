@@ -113,5 +113,30 @@ public class Pen {
         return babyAnimalsInPen.size();
     }
 
+    public boolean isThereAMaleAndFemaleAdultInPen()
+    {
+        boolean bothSexes = false;
+        int numFemales = 0;
+        int numMales = 0;
+
+        for(Animal animal: animalsInPen)
+        {
+            if (animal.getGenderOfAnimal().equalsIgnoreCase("female"))
+            {
+                numFemales++;
+            }
+            if (animal.getGenderOfAnimal().equalsIgnoreCase("male"))
+            {
+                numMales++;
+            }
+        }
+        if(numFemales >= 1 && numMales >= 1)
+        {
+            bothSexes = true;
+        }
+
+        return bothSexes;
+    }
+
 
 }
