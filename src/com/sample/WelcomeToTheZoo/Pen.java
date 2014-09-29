@@ -103,5 +103,15 @@ public class Pen {
         return "Adults In The Pen: " + listAllAnimalsInPen() + " Babies In The Pen: " + listAllBabyAnimalsInPen();
     }
 
+    public int howManyAnimalsInPen()
+    {
+        return animalsInPen.size();
+    }
+
+    public int howManyBabyAnimalsInPen()
+    {
+        return babyAnimalsInPen.size();
+    }
+
 
 }

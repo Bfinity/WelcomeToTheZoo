@@ -75,12 +75,20 @@ public class Zoo {
 
     public void addAnimals(int penToAddIn, Animal aNewAnimal)
     {
-        zooPens.get(penToAddIn).addAnimalsToPen(aNewAnimal);
+        if(zooPens.get(penToAddIn).howManyAnimalsInPen() < 5){
+        zooPens.get(penToAddIn).addAnimalsToPen(aNewAnimal);}
+        else{
+            System.out.println("This pen is full.");
+        }
     }
 
     public void addAnimals(int penToAddIn, BabyAnimal aNewBabyAnimal)
     {
-        zooPens.get(penToAddIn).addAnimalsToPen(aNewBabyAnimal);
+        if(zooPens.get(penToAddIn).howManyBabyAnimalsInPen() < 11){
+        zooPens.get(penToAddIn).addAnimalsToPen(aNewBabyAnimal);}
+        else{
+            System.out.println("This pen is full.");
+        }
     }
 
     public void removeAnimals(int penToRemoveFrom, Animal anAnimalToRemove)
