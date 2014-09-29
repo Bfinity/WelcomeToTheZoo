@@ -7,17 +7,17 @@ public class Habitat {
 
     private Animal anAnimal;
     private BabyAnimal aBabyAnimal;
-    private String animalHabitat;
+    private HabitatTypes habitatTypes;
 
-    public Habitat(Animal animal, String animalHabitat)
+    public Habitat(Animal animal, HabitatTypes habitatTypes)
     {
         this.anAnimal = animal;
-        this.animalHabitat = animalHabitat;
+        this.habitatTypes = habitatTypes;
     }
 
-    public Habitat(BabyAnimal aBabyAnimal, String animalHabitat)
+    public Habitat(BabyAnimal aBabyAnimal, HabitatTypes habitatTypes)
     {
         this.aBabyAnimal = aBabyAnimal;
-        this.animalHabitat = animalHabitat;
+        this.habitatTypes = habitatTypes;
     }
 }

@@ -1,0 +1,15 @@
+package com.sample.WelcomeToTheZoo;
+
+/**
+ * Created by BFineRocks on 9/29/14.
+ */
+public enum HabitatTypes {
+
+    POLAR_REGIONS, CONIFEROUS_FOREST, TEMPERATE_FOREST, GRASSLANDS, DESERTS, MOUNTAINS, TROPICAL_FOREST,
+    OCEANIC_ISLANDS, FRESHWATER_WETLANDS, OCEANS, FRESH_WATER_LAKES
+
+    
+
+
+
+}
