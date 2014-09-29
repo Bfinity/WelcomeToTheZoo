@@ -5,9 +5,12 @@ package com.sample.WelcomeToTheZoo;
  */
 public class ZooDemo {
 
-    private Zoo myFavoriteZoo;
+    public static Zoo myFavoriteZoo;
 
-    public ZooDemo()
+    
+
+
+/*    public ZooDemo()
     {
         myFavoriteZoo = new Zoo();
     }
@@ -64,7 +67,7 @@ public class ZooDemo {
         String babyAnimalsInPen = myFavoriteZoo.getThisPen(penToList).listAllBabyAnimalsInPen();
 
         return animalsInPen + " " + babyAnimalsInPen;
-    }
+    }*/
 
 
 }
