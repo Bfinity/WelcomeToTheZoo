@@ -49,7 +49,7 @@ public class Zoo {
         String allAnimalsAndBabies = "";
         for(Pen aPen: zooPens)
         {
-            allAnimalsAndBabies = allAnimalsAndBabies + " " + aPen.listAllAnimalsInPen() + " " + aPen.listAllBabyAnimalsInPen();
+            allAnimalsAndBabies = allAnimalsAndBabies + " " + aPen.listAdultAndBabyAnimals();
         }
 
         return allAnimalsAndBabies;

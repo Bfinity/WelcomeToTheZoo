@@ -81,7 +81,7 @@ public class Pen {
         String allAnimalsInPen = "";
         for(Animal anAnimal: animalsInPen)
         {
-            allAnimalsInPen = allAnimalsInPen + " " + anAnimal.getSpeciesOfAnimal();
+            allAnimalsInPen = allAnimalsInPen + anAnimal.animalInformation() + " ; ";
         }
 
         return  allAnimalsInPen;
@@ -92,10 +92,15 @@ public class Pen {
         String allBabyAnimalsInPen = "";
         for(BabyAnimal aBabyAnimal: babyAnimalsInPen)
         {
-            allBabyAnimalsInPen = allBabyAnimalsInPen + " " + aBabyAnimal.getSpeciesOfAnimal();
+            allBabyAnimalsInPen = allBabyAnimalsInPen + aBabyAnimal.babyAnimalInformation() + " ; ";
         }
 
         return  allBabyAnimalsInPen;
+    }
+
+    public String listAdultAndBabyAnimals()
+    {
+        return "Adults In The Pen: " + listAllAnimalsInPen() + " Babies In The Pen: " + listAllBabyAnimalsInPen();
     }
 
 

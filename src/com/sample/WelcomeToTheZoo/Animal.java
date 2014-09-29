@@ -45,4 +45,9 @@ public class Animal {
     {
         return dietOfAnimal;
     }
+
+    public String animalInformation()
+    {
+        return  "Species: " +  getSpeciesOfAnimal() + ", Gender: " + getGenderOfAnimal() + ", Diet: " + getDietOfAnimal();
+    }
 }

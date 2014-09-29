@@ -22,6 +22,16 @@ public class ZooDemo {
         myFavoriteZoo.removeAPenFromTheZoo(penNumerToRemove);
     }
 
+    public int findAPenByPenNumber (int penNumber)
+    {
+       return myFavoriteZoo.findAPenInTheZoo(penNumber);
+    }
+
+    public int findAPenByAnimal(Animal animal)
+    {
+        return myFavoriteZoo.findAnimalsInPens(animal);
+    }
+
     public void addANewAnimal(int penLocationToPutAnimal, Animal aNewAnimal)
     {
         myFavoriteZoo.addAnimals(penLocationToPutAnimal, aNewAnimal);
@@ -55,5 +65,6 @@ public class ZooDemo {
 
         return animalsInPen + " " + babyAnimalsInPen;
     }
+
 
 }

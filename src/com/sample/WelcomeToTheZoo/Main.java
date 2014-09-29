@@ -5,20 +5,20 @@ package com.sample.WelcomeToTheZoo;
  */
 public class Main {
     public static ZooDemo aNewZoo;
-    public static Animal animals;
-    public static BabyAnimal baby;
-    public static Pen pens;
 
 
     public static void main(String[] args) {
-        animals = new Animal("Bear", "Female", "meat");
-        pens = new Pen(1);
-        pens.addAnimalsToPen(animals);
+        Animal momaBear = new Animal("Bear", "Female", "meat");
+        Pen bearPens = new Pen(1);
+        bearPens.addAnimalsToPen(momaBear);
         aNewZoo = new ZooDemo();
-        aNewZoo.addNewPens(pens);
+        aNewZoo.addNewPens(bearPens);
+        BabyAnimal babyBear = new BabyAnimal("Bear", "male", "fish", 24);
+        bearPens.addAnimalsToPen(babyBear);
 
-        baby = new BabyAnimal("Bear", "male", "fish", 24);
-        pens.addAnimalsToPen(baby);
+        Animal popaBear = new Animal("Bear", "Male", "fruit");
+        int penLocation =  aNewZoo.findAPenByAnimal(momaBear);
+        aNewZoo.addANewAnimal(penLocation, popaBear);
 
        System.out.println(aNewZoo.listAllAnimalsInAllPens());
 

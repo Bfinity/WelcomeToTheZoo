@@ -51,4 +51,9 @@ public class BabyAnimal extends Animal {
     {
         return ageInMonths;
     }
+
+    public String babyAnimalInformation()
+    {
+        return "Species: " + getSpeciesOfAnimal() + ", Gender: " + getGenderOfAnimal() + ", Diet: " + getDietOfAnimal() + ", Age In Months: " + getAgeInMonths();
+    }
 }
