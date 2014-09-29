@@ -13,9 +13,10 @@ public class Zoo {
         zooPens = new ArrayList<Pen>();
     }
 
-    public void addNewPenToZoo(Pen aPen)
+    public void addNewPenToZoo(int penNumber)
     {
-        zooPens.add(aPen);
+        Pen aNewPen = new Pen(penNumber);
+        zooPens.add(aNewPen);
     }
 
     public int findAPenInTheZoo(int penNumberSought)
@@ -95,11 +96,18 @@ public class Zoo {
         }
     }
 
+
+
     public void removeAnimals(String animalNameToRemove)
     {
         int locationOfAnimal = findPenNumberOfAnimal(animalNameToRemove);
         Animal animalToRemove = zooPens.get(locationOfAnimal).getAnimalFromPen(animalNameToRemove);
         zooPens.get(locationOfAnimal).removeAnimalFromPen(animalToRemove);
+    }
+
+    public int getNumberOfPensInZoo()
+    {
+        return zooPens.size();
     }
 
 
