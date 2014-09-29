@@ -31,7 +31,7 @@ public class Pen {
 
     public int findAnimalInPen(String animalNameSought)
     {
-        int locationOfAnimalInPen = 0;
+        int locationOfAnimalInPen = -1;
         for(int i = 0; i < animalsInPen.size(); i++)
         {
             String aniName = animalsInPen.get(i).getNameOfAnimal();
@@ -49,10 +49,21 @@ public class Pen {
         return locationOfAnimalInPen;
     }
 
-    public void removeAnimalFromPen(String animalNameToRemove)
+    public Animal getAnimalFromPen(String animalNameSought)
     {
-        int animalToGo =  findAnimalInPen(animalNameToRemove);
-        animalsInPen.remove(animalToGo);
+        int animalFound = findAnimalInPen(animalNameSought);
+            return animalsInPen.get(animalFound);
+    }
+
+    public BabyAnimal getBabyFromPen(String babyAnimalNameSought)
+    {
+        int babyFound = findAnimalInPen(babyAnimalNameSought);
+        return babyAnimalsInPen.get(babyFound);
+    }
+
+    public void removeAnimalFromPen(Animal animalToRemove)
+    {
+        animalsInPen.remove(animalToRemove);
     }
 
     public void addAnimalsToPen(BabyAnimal aBabyAnimal)
@@ -78,10 +89,9 @@ public class Pen {
     }
 */
 
-    public void removeAnimalFromPen(String babyAnimalNameToRemove)
+    public void removeAnimalFromPen(BabyAnimal babyAnimalToRemove)
     {
-        int animalToGo =  findAnimalInPen(babyAnimalNameToRemove);
-        babyAnimalsInPen.remove(animalToGo);
+        babyAnimalsInPen.remove(babyAnimalToRemove);
     }
 
     public String listAllAnimalsInPen()

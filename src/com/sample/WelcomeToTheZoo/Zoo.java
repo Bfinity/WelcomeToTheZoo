@@ -40,8 +40,8 @@ public class Zoo {
 
     public void removeAPenFromTheZoo(int penNumberToRemove)
     {
-        int penLocation = findAPenInTheZoo(penNumberToRemove);
-        zooPens.remove(zooPens.get(penLocation));
+        Pen penToRemove = getThisPen(penNumberToRemove);
+        zooPens.remove(penToRemove);
     }
 
     public String listAllAnimalsInThisZoo() {
@@ -56,9 +56,12 @@ public class Zoo {
     public int findPenNumberOfAnimal(String animalName)
     {
         int penNumber = -1;
-        for(Pen aPen : zooPens)
+        for(int i = 0; i < zooPens.size(); i++)
         {
-            penNumber = aPen.findAnimalInPen(animalName);
+           if(zooPens.get(i).findAnimalInPen(animalName) > -1)
+           {
+               penNumber = i;
+           }
         }
         return penNumber;
     }
@@ -95,7 +98,8 @@ public class Zoo {
     public void removeAnimals(String animalNameToRemove)
     {
         int locationOfAnimal = findPenNumberOfAnimal(animalNameToRemove);
-        zooPens.remove(locationOfAnimal);
+        Animal animalToRemove = zooPens.get(locationOfAnimal).getAnimalFromPen(animalNameToRemove);
+        zooPens.get(locationOfAnimal).removeAnimalFromPen(animalToRemove);
     }
 
 
