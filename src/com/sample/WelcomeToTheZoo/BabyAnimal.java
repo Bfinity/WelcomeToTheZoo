@@ -7,12 +7,21 @@ public class BabyAnimal extends Animal {
 
    private int ageInMonths;
 
-    public BabyAnimal(String species, String gender, String diet, int ageInMonths)
+    public BabyAnimal(String nameOfAnimal, String speciesOfAnimal, String genderOfAnimal, String dietOfAnimal, int ageInMonths)
     {
-        super(species, gender, diet);
+        super(nameOfAnimal, speciesOfAnimal, genderOfAnimal, dietOfAnimal);
         this.ageInMonths = ageInMonths;
     }
 
+    public void setNameOfAnimal(String nameOfAnimal)
+    {
+        super.setNameOfAnimal(nameOfAnimal);
+    }
+
+
+    public String getNameOfAnimal() {
+        return super.getNameOfAnimal();
+    }
 
     public void setSpeciesOfAnimal(String speciesOfAnimal) {
         super.setSpeciesOfAnimal(speciesOfAnimal);
@@ -54,6 +63,6 @@ public class BabyAnimal extends Animal {
 
     public String babyAnimalInformation()
     {
-        return "Species: " + getSpeciesOfAnimal() + ", Gender: " + getGenderOfAnimal() + ", Diet: " + getDietOfAnimal() + ", Age In Months: " + getAgeInMonths();
+        return "Name: " + getNameOfAnimal() +  ", Species: " + getSpeciesOfAnimal() + ", Gender: " + getGenderOfAnimal() + ", Diet: " + getDietOfAnimal() + ", Age In Months: " + getAgeInMonths();
     }
 }

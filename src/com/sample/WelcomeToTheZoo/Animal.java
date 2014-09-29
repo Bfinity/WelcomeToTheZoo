@@ -7,12 +7,24 @@ public class Animal {
     private String speciesOfAnimal;
     private String genderOfAnimal;
     private String dietOfAnimal;
+    private String nameOfAnimal;
 
-    public Animal(String speciesOfAnimal, String genderOfAnimal, String dietOfAnimal)
+    public Animal(String nameOfAnimal, String speciesOfAnimal, String genderOfAnimal, String dietOfAnimal)
     {
+        this.nameOfAnimal = nameOfAnimal;
         this.speciesOfAnimal = speciesOfAnimal;
         this.genderOfAnimal = genderOfAnimal;
         this.dietOfAnimal = dietOfAnimal;
+    }
+
+    public void setNameOfAnimal(String nameOfAnimal)
+    {
+        this.nameOfAnimal = nameOfAnimal;
+    }
+
+    public String getNameOfAnimal()
+    {
+        return nameOfAnimal;
     }
 
     public void setSpeciesOfAnimal(String speciesOfAnimal)
@@ -48,6 +60,6 @@ public class Animal {
 
     public String animalInformation()
     {
-        return  "Species: " +  getSpeciesOfAnimal() + ", Gender: " + getGenderOfAnimal() + ", Diet: " + getDietOfAnimal();
+        return "Name: " + getNameOfAnimal() +  ", Species: " +  getSpeciesOfAnimal() + ", Gender: " + getGenderOfAnimal() + ", Diet: " + getDietOfAnimal();
     }
 }
