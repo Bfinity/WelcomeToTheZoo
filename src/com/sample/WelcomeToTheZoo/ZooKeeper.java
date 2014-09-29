@@ -26,7 +26,7 @@ public class ZooKeeper {
     String addANewAnimalDiet = "Please enter the animal's diet:";
     String addANewAnimalAge = "Please enter the baby animal's age in months:";
     String placeAnimalIntoPen = "Please enter the Pen Number where this animal has been placed.";
-    String findAnAdultAnim
+    String findAnAdultAnim;
 
 
 

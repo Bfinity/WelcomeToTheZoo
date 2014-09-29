@@ -44,34 +44,25 @@ public class Zoo {
         zooPens.remove(zooPens.get(penLocation));
     }
 
-    public String listAllAnimalsInThisZoo()
-    {
+    public String listAllAnimalsInThisZoo() {
         String allAnimalsAndBabies = "";
-        for(Pen aPen: zooPens)
-        {
+        for (Pen aPen : zooPens) {
             allAnimalsAndBabies = allAnimalsAndBabies + " " + aPen.listAdultAndBabyAnimals();
         }
 
         return allAnimalsAndBabies;
     }
 
-    public int findAnimalsInPens(Animal anAnimal)
+    public int findPenNumberOfAnimal(String animalName)
     {
-        int locationOfPenHoldingAnimal = -1;
-        for(int i = 0; i < zooPens.size(); i ++){
-        locationOfPenHoldingAnimal =  zooPens.get(i).findAnimalInPen(anAnimal);
+        int penNumber = -1;
+        for(Pen aPen : zooPens)
+        {
+            penNumber = aPen.findAnimalInPen(animalName);
         }
-        return locationOfPenHoldingAnimal;
+        return penNumber;
     }
 
-    public int findAnimalsInPens(BabyAnimal aBabyAnimal)
-    {
-        int locationOfPenHoldingAnimal = -1;
-        for(int i = 0; i < zooPens.size(); i ++){
-            locationOfPenHoldingAnimal =  zooPens.get(i).findAnimalInPen(aBabyAnimal);
-        }
-        return locationOfPenHoldingAnimal;
-    }
 
     public void addAnimals(int penToAddIn, Animal aNewAnimal)
     {
@@ -101,14 +92,12 @@ public class Zoo {
         }
     }
 
-    public void removeAnimals(int penToRemoveFrom, Animal anAnimalToRemove)
+    public void removeAnimals(String animalNameToRemove)
     {
-        zooPens.get(penToRemoveFrom).removeAnimalFromPen(anAnimalToRemove);
+        int locationOfAnimal = findPenNumberOfAnimal(animalNameToRemove);
+        zooPens.remove(locationOfAnimal);
     }
 
-    public void removeAnimals(int penToRemoveFrom, BabyAnimal aBabyAnimalToRemove)
-    {
-        zooPens.get(penToRemoveFrom).removeAnimalFromPen(aBabyAnimalToRemove);
-    }
+
 
 }

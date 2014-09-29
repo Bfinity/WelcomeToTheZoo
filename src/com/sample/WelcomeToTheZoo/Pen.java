@@ -29,13 +29,18 @@ public class Pen {
         animalsInPen.add(anAnimal);
     }
 
-    public int findAnimalInPen(Animal animalSought)
+    public int findAnimalInPen(String animalNameSought)
     {
         int locationOfAnimalInPen = 0;
         for(int i = 0; i < animalsInPen.size(); i++)
         {
-            Animal anAnimal = animalsInPen.get(i);
-            if(animalSought.equals(anAnimal))
+            String aniName = animalsInPen.get(i).getNameOfAnimal();
+            if(animalNameSought.equalsIgnoreCase(aniName))
+            {
+                locationOfAnimalInPen = i;
+            }
+            String aniBName = babyAnimalsInPen.get(i).getNameOfAnimal();
+            if(animalNameSought.equalsIgnoreCase(aniBName))
             {
                 locationOfAnimalInPen = i;
             }
@@ -44,9 +49,9 @@ public class Pen {
         return locationOfAnimalInPen;
     }
 
-    public void removeAnimalFromPen(Animal animalToRemove)
+    public void removeAnimalFromPen(String animalNameToRemove)
     {
-        int animalToGo =  findAnimalInPen(animalToRemove);
+        int animalToGo =  findAnimalInPen(animalNameToRemove);
         animalsInPen.remove(animalToGo);
     }
 
@@ -55,13 +60,15 @@ public class Pen {
         babyAnimalsInPen.add(aBabyAnimal);
     }
 
-    public int findAnimalInPen(BabyAnimal babyAnimalSought)
+
+/*
+    public int findAnimalInPen(String babyAnimalNameSought)
     {
         int locationOfBabyAnimalInPen = 0;
         for(int i = 0; i < babyAnimalsInPen.size(); i++)
         {
-            BabyAnimal aBabyAnimal = babyAnimalsInPen.get(i);
-            if(babyAnimalSought.equals(aBabyAnimal))
+            String aBabyAnimalName = babyAnimalsInPen.get(i).getNameOfAnimal();
+            if(babyAnimalNameSought.equals(aBabyAnimalName))
             {
                 locationOfBabyAnimalInPen = i;
             }
@@ -69,10 +76,11 @@ public class Pen {
         }
         return locationOfBabyAnimalInPen;
     }
+*/
 
-    public void removeAnimalFromPen(BabyAnimal babyAnimalToRemove)
+    public void removeAnimalFromPen(String babyAnimalNameToRemove)
     {
-        int animalToGo =  findAnimalInPen(babyAnimalToRemove);
+        int animalToGo =  findAnimalInPen(babyAnimalNameToRemove);
         babyAnimalsInPen.remove(animalToGo);
     }
 
