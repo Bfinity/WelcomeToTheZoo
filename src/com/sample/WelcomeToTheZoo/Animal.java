@@ -58,6 +58,11 @@ public class Animal {
         return dietOfAnimal;
     }
 
+    public boolean isAnAdult()
+    {
+        return true;
+    }
+
     public String animalInformation()
     {
         return "Name: " + getNameOfAnimal() +  ", Species: " +  getSpeciesOfAnimal() + ", Gender: " + getGenderOfAnimal() + ", Diet: " + getDietOfAnimal();

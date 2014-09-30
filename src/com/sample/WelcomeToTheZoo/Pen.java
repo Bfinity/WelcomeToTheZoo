@@ -49,10 +49,36 @@ public class Pen {
         return locationOfAnimalInPen;
     }
 
+
     public Animal getAnimalFromPen(String animalNameSought)
     {
+        Animal anAnimal = null;
         int animalFound = findAnimalInPen(animalNameSought);
-            return animalsInPen.get(animalFound);
+        if(animalsInPen.get(animalFound).isAnAdult())
+        {
+            anAnimal = animalsInPen.get(animalFound);
+        }
+
+        else{
+            getBabyAnimalFromPen(animalNameSought);
+
+        }
+        return anAnimal;
+    }
+
+    public BabyAnimal getBabyAnimalFromPen(String animalNameSought)
+    {
+        BabyAnimal aBabyAnimal = null;
+        int animalFound = findAnimalInPen(animalNameSought);
+        if(!babyAnimalsInPen.get(animalFound).isAnAdult()){
+            aBabyAnimal = babyAnimalsInPen.get(animalFound);
+        }
+        else{
+            getAnimalFromPen(animalNameSought);
+        }
+
+        return aBabyAnimal;
+
     }
 
     public BabyAnimal getBabyFromPen(String babyAnimalNameSought)
@@ -71,23 +97,6 @@ public class Pen {
         babyAnimalsInPen.add(aBabyAnimal);
     }
 
-
-/*
-    public int findAnimalInPen(String babyAnimalNameSought)
-    {
-        int locationOfBabyAnimalInPen = 0;
-        for(int i = 0; i < babyAnimalsInPen.size(); i++)
-        {
-            String aBabyAnimalName = babyAnimalsInPen.get(i).getNameOfAnimal();
-            if(babyAnimalNameSought.equals(aBabyAnimalName))
-            {
-                locationOfBabyAnimalInPen = i;
-            }
-
-        }
-        return locationOfBabyAnimalInPen;
-    }
-*/
 
     public void removeAnimalFromPen(BabyAnimal babyAnimalToRemove)
     {

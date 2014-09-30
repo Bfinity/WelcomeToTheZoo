@@ -105,9 +105,47 @@ public class Zoo {
         zooPens.get(locationOfAnimal).removeAnimalFromPen(animalToRemove);
     }
 
+    public void removeBabyAnimal(String animalNameToRemove)
+    {
+        int locationOfAnimal = findPenNumberOfAnimal(animalNameToRemove);
+        BabyAnimal animalToRemove = zooPens.get(locationOfAnimal).getBabyAnimalFromPen(animalNameToRemove);
+        zooPens.get(locationOfAnimal).removeAnimalFromPen(animalToRemove);
+
+    }
+
     public int getNumberOfPensInZoo()
     {
         return zooPens.size();
+    }
+
+    public int getNumberOfAdultsInZoo()
+    {
+        int numAdults = 0;
+        for(Pen aPen: zooPens)
+        {
+            numAdults = aPen.howManyAnimalsInPen();
+        }
+        return  numAdults;
+    }
+
+    public int getNumberOfBabiesInZoo()
+    {
+        int numBabies = 0;
+        for(Pen aPen: zooPens)
+        {
+            numBabies = aPen.howManyBabyAnimalsInPen();
+        }
+        return  numBabies;
+    }
+
+    public int getTotalNumberOfAnimals()
+    {
+        int numAnimals = 0;
+        for(Pen aPen: zooPens)
+        {
+            numAnimals = aPen.howManyAnimalsInPen() + aPen.howManyBabyAnimalsInPen();
+        }
+        return numAnimals;
     }
 
 
