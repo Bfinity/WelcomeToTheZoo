@@ -5,7 +5,14 @@ package com.sample.WelcomeToTheZoo;
  */
 public class ZooDemo {
 
-    public static Zoo myFavoriteZoo;
+    public static ZooKeeper aZooKeeper;
+
+    public static void main(String[] args) {
+        aZooKeeper = new ZooKeeper();
+
+        aZooKeeper.welcome();
+        aZooKeeper.zooOptions();
+    }
 
 
 }

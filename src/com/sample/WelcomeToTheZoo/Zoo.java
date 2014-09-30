@@ -33,6 +33,15 @@ public class Zoo {
         return penLocation;
     }
 
+    public void printOutAllPenNumbersUsed()
+    {
+        String pensUsed = "";
+        for(Pen aPen: zooPens)
+        {
+           pensUsed = pensUsed +" " +  String.valueOf(aPen.getPenNumber());
+        }
+    }
+
     public Pen getThisPen(int penNumber)
     {
         int penFound = findAPenInTheZoo(penNumber);

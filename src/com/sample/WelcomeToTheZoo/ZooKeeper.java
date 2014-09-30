@@ -13,10 +13,10 @@ public class ZooKeeper {
     Animal anAnimal;
     BabyAnimal aBabyAnimal;
     Habitat animalHabitats;
-    String welcome = "Welcome to the Zoo Keeper. Please enter you ID number and password.";
-    String options = "Please select an option. 1: Add Something/Someone New. 2: Search The Zoo. 3: Get Zoo Information " +
-            "4: Remove Something/Someone";
-    String addDirections = "You chose the Add option. What are we adding today? 1: Build a New Pen. 2: Add a new adult animal. " +
+    String welcome = "Welcome to the Zoo Keeper!!";
+    String options = "Please select an option. 1: Add Something/Someone New 2: Search The Zoo 3: Get Zoo Information " +
+            "4: Remove Something/Someone 5: Exit Zoo";
+    String addDirections = "You chose the Add option. What are we adding today? 1: Build a New Pen 2: Add a new adult animal " +
             "3: Add a new baby animal ";
     String searchDirections = "You chose the Search option. What are you searching for today? 1: A pen 2: An Adult or Baby Animal ";
     String informationDirections = "You chose Get Zoo Information. What information do you need? 1: Number of Pens in the Zoo " +
@@ -41,6 +41,7 @@ public class ZooKeeper {
     String numberOfAnimalsTotal = " number of Animals in Total in the Zoo.";
     String printOutInformation = "The following is detailed information about all the animals in the zoo:";
     String defaultStatement = "That option is not available.";
+    String exitStatement = "Thank you for using EZoo!";
     String animalName = "";
     String animalSpecies = "";
     String animalGender = "";
@@ -56,28 +57,32 @@ public class ZooKeeper {
     public void zooOptions()
     {
        System.out.println(options);
-        switch(checkForValidChoice(4))
-        {
-            case 1:
-                addOptions();
-                break;
+            switch (checkForValidChoice(4)) {
+                case 1:
+                    addOptions();
+                    break;
 
-            case 2:
-                searchOption();
-                break;
+                case 2:
+                    searchOption();
+                    break;
 
-            case 3:
-                zooInformationOption();
-                break;
+                case 3:
+                    zooInformationOption();
+                    break;
 
-            case 4:
-                removeOption();
-                break;
+                case 4:
+                    removeOption();
+                    break;
 
-            default:
-                System.out.println(defaultStatement);
-                zooOptions();
-        }
+                case 5:
+                    System.out.println(exitStatement);
+                    break;
+
+                default:
+                    System.out.println(defaultStatement);
+                    zooOptions();
+            }
+
     }
 
     public void addOptions()
@@ -89,14 +94,17 @@ public class ZooKeeper {
                 System.out.println(penAddGreeting);
                 System.out.println(penAccess);
                 myAwesomeZoo.addNewPenToZoo(zooKeeperInput.nextInt());
+                zooOptions();
                 break;
 
             case 2:
                 addAnAnimalMethod();
+                zooOptions();
                 break;
 
             case 3:
                 addABabyAnimalMethod();
+                zooOptions();
                 break;
 
 
@@ -113,6 +121,7 @@ public class ZooKeeper {
         {
             case 1:
                 searchPenMethod();
+                zooOptions();
                 break;
 
             case 2:
@@ -126,6 +135,7 @@ public class ZooKeeper {
                 {
                     searchBabyAnimalMethod();
                 }
+                zooOptions();
                 break;
 
             default:
@@ -141,22 +151,27 @@ public class ZooKeeper {
         {
             case 1:
                 getNumberOfPensInZoo();
+                zooOptions();
                 break;
 
             case 2:
                 getNumberOfAdultAnimals();
+                zooOptions();
                 break;
 
             case 3:
                 getNumberOfBabies();
+                zooOptions();
                 break;
 
             case 4:
                 getTotalNumberOfAnimalsInTheZoo();
+                zooOptions();
                 break;
 
             case 5:
                 printOutAllAnimalInformation();
+                zooOptions();
                 break;
 
             default:
@@ -172,14 +187,17 @@ public class ZooKeeper {
         {
             case 1:
                 removePenFromZoo();
+                zooOptions();
                 break;
 
             case 2:
                 removeAnimalFromZoo();
+                zooOptions();
                 break;
 
             case 3:
                 removeBabyAnimalFromZoo();
+                zooOptions();
                 break;
 
             default:
@@ -195,7 +213,7 @@ public class ZooKeeper {
         try{
             if(zooKeeperInput.hasNextInt()) {
                 validInt = zooKeeperInput.nextInt();
-                if (validInt < choiceOptions && validInt > 0) {
+                if (validInt <= choiceOptions && validInt > 0) {
                     return validInt;
                 } else {
                     System.out.println(defaultStatement);
@@ -231,16 +249,18 @@ public class ZooKeeper {
     {
         System.out.println(addAnimalGreeting);
         System.out.println(addAnimalName);
-        animalName = zooKeeperInput.nextLine();
+        Scanner zookeeperInput = new Scanner(System.in);
+        animalName = zookeeperInput.nextLine();
         System.out.println(addANewAnimalSpecies);
-        animalSpecies = zooKeeperInput.nextLine();
+        animalSpecies = zookeeperInput.nextLine();
         System.out.println(addANewAnimalGender);
-        animalGender = zooKeeperInput.nextLine();
+        animalGender = zookeeperInput.nextLine();
         System.out.println(addANewAnimalDiet);
-        animalDiet = zooKeeperInput.nextLine();
+        animalDiet = zookeeperInput.nextLine();
         anAnimal = new Animal(animalName, animalSpecies, animalGender, animalDiet);
         System.out.println(placeAnimalIntoPen);
-        myAwesomeZoo.addAnimals(zooKeeperInput.nextInt(), anAnimal);
+        int pen = checkForValidInt();
+        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), anAnimal);
 
     }
 
@@ -248,18 +268,20 @@ public class ZooKeeper {
     {
         System.out.println(addAnimalGreeting);
         System.out.println(addAnimalName);
-        animalName = zooKeeperInput.nextLine();
+        Scanner zookeeperInput = new Scanner(System.in);
+        animalName = zookeeperInput.nextLine();
         System.out.println(addANewAnimalSpecies);
-        animalSpecies = zooKeeperInput.nextLine();
+        animalSpecies = zookeeperInput.nextLine();
         System.out.println(addANewAnimalGender);
-        animalGender = zooKeeperInput.nextLine();
+        animalGender = zookeeperInput.nextLine();
         System.out.println(addANewAnimalDiet);
-        animalDiet = zooKeeperInput.nextLine();
+        animalDiet = zookeeperInput.nextLine();
         System.out.println(addANewAnimalAge);
         int animalAge = checkForValidInt();
         aBabyAnimal = new BabyAnimal(animalName, animalSpecies, animalGender, animalDiet, animalAge);
         System.out.println(placeAnimalIntoPen);
-        myAwesomeZoo.addAnimals(zooKeeperInput.nextInt(), aBabyAnimal);
+        int pen = checkForValidInt();
+        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), aBabyAnimal);
     }
 
     public void searchPenMethod()
