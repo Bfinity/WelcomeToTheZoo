@@ -14,14 +14,14 @@ public class ZooKeeper {
     BabyAnimal aBabyAnimal;
     Habitat animalHabitats;
     String welcome = "Welcome to the Zoo Keeper!!";
-    String options = "Please select an option. 1: Add Something/Someone New 2: Search The Zoo 3: Get Zoo Information " +
-            "4: Remove Something/Someone 5: Exit Zoo";
-    String addDirections = "You chose the Add option. What are we adding today? 1: Build a New Pen 2: Add a new adult animal " +
-            "3: Add a new baby animal ";
-    String searchDirections = "You chose the Search option. What are you searching for today? 1: A pen 2: An Adult or Baby Animal ";
-    String informationDirections = "You chose Get Zoo Information. What information do you need? 1: Number of Pens in the Zoo " +
-            "2: Number of Adult Animals 3: Number of Baby Animals 4: Total Number of All Animals 5: List all Pen Numbers In Use 6: List of All Animal's Information";
-    String removeDirections = "You chose the Remove option. What do you need to remove today? 1: A Pen 2: An Adult Animal 3: A Baby Animal";
+    String options = "Please select an option. \n1: Add Something/Someone New \n2: Search The Zoo \n3: Get Zoo Information " +
+            "\n4: Remove Something/Someone \n5: Exit Zoo";
+    String addDirections = "You chose the Add option. What are we adding today? \n1: Build a New Pen \n2: Add a new adult animal " +
+            "\n3: Add a new baby animal ";
+    String searchDirections = "You chose the Search option. What are you searching for today? \n1: A pen \n2: An Adult Animal \n3: A Baby Animal ";
+    String informationDirections = "You chose Get Zoo Information. What information do you need? \n1: Number of Pens in the Zoo " +
+            "\n2: Number of Adult Animals \n3: Number of Baby Animals \n4: Total Number of All Animals \n5: List all Pen Numbers In Use \n6: List of All Animal's Information";
+    String removeDirections = "You chose the Remove option. What do you need to remove today? \n1: A Pen \n2: An Adult Animal \n3: A Baby Animal";
     String penAddGreeting ="New Pen? Got it!";
     String penAccess = "Please enter the Pen Number.";
     String penCreatedStart = "Great! You created a new Pen. You now have ";
@@ -33,9 +33,10 @@ public class ZooKeeper {
     String addANewAnimalDiet = "Please enter the animal's diet:";
     String addANewAnimalAge = "Please enter the baby animal's age in months:";
     String placeAnimalIntoPen = "Please enter the Pen Number where this animal has been placed:";
+    String newAnimalAddedStart = "Great! You've added this animal: ";
+    String newAnimalAddedEnd = ", to Pen Number: ";
     String findAPenInTheZoo = "Please enter the Pen Number you are looking for:";
     String findAnimalInZoo = "Please enter the name of the animal you are looking for:";
-    String isThisAdult = "Is the animal an adult or a baby?";
     String thereAre = "There are ";
     String numberOfPens = " number of Pens in the Zoo.";
     String numberOfAdults = " number of Adult Animals in the Zoo.";
@@ -118,7 +119,7 @@ public class ZooKeeper {
     public void searchOption()
     {
         System.out.println(searchDirections);
-        switch (checkForValidChoice(2))
+        switch (checkForValidChoice(3))
         {
             case 1:
                 searchPenMethod();
@@ -126,16 +127,11 @@ public class ZooKeeper {
                 break;
 
             case 2:
-                System.out.println(isThisAdult);
-                String adulthood =  zooKeeperInput.nextLine();
-                if(adulthood.equalsIgnoreCase("adult"))
-                {
-                    searchAnimalMethod();
-                }
-                else
-                {
-                    searchBabyAnimalMethod();
-                }
+                searchAnimalMethod();
+                break;
+
+            case 3:
+                searchBabyAnimalMethod();
                 zooOptions();
                 break;
 
@@ -255,8 +251,14 @@ public class ZooKeeper {
     {
         System.out.println(penAddGreeting);
         System.out.println(penAccess);
-        myAwesomeZoo.addNewPenToZoo(checkForValidInt());
-        System.out.println(penCreatedStart + myAwesomeZoo.getNumberOfPensInZoo() + penCreatedEnd);
+        int penNumber = checkForValidInt();
+        if(myAwesomeZoo.findAPenInTheZoo(penNumber) == -1){
+        myAwesomeZoo.addNewPenToZoo(penNumber);
+        System.out.println(penCreatedStart + myAwesomeZoo.getNumberOfPensInZoo() + penCreatedEnd);}
+        else{
+            System.out.println("That Pen Number is already in use.");
+            addOptions();
+        }
     }
 
     public void addAnAnimalMethod()
@@ -275,7 +277,9 @@ public class ZooKeeper {
         anAnimal = new Animal(animalName, animalSpecies, animalGender, animalDiet);
         System.out.println(placeAnimalIntoPen);
         int pen = checkForValidInt();
-        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), anAnimal);}
+        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), anAnimal);
+        System.out.println(newAnimalAddedStart + anAnimal.animalInformation() + newAnimalAddedEnd + pen);
+        }
         else
         {
             System.out.println("Every animal needs a home. You must create a pen first.");
@@ -302,7 +306,9 @@ public class ZooKeeper {
         System.out.println(addANewAnimalAge);
         int animalAge = checkForValidInt();
         aBabyAnimal = new BabyAnimal(animalName, animalSpecies, animalGender, animalDiet, animalAge);
-        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), aBabyAnimal);}
+        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), aBabyAnimal);
+
+        }
         else
         {
             System.out.println("There must be an adult female and male in a pen to place a new baby.");
@@ -314,27 +320,52 @@ public class ZooKeeper {
     {
         System.out.println(findAPenInTheZoo);
         int penFound = myAwesomeZoo.findAPenInTheZoo(checkForValidInt());
-        myAwesomeZoo.getThisPen(penFound).listAllBabyAnimalsInPen();
+        if(penFound < 0)
+        {
+            System.out.println("We can't find that Pen Number.");
+            searchOption();
+        }
+        else {
+            if (myAwesomeZoo.getThisPen(penFound).howManyAnimalsInPen() == 0 && myAwesomeZoo.getThisPen(penFound).howManyBabyAnimalsInPen() == 0) {
+                System.out.println("This Pen is currently empty.");
+            } else {
+                System.out.println(myAwesomeZoo.getThisPen(penFound).listAdultAndBabyAnimals());
+            }
+        }
     }
 
-    public Animal searchAnimalMethod()
+    public void searchAnimalMethod()
     {
+        Scanner zooKeeperInput = new Scanner(System.in);
         System.out.println(findAnimalInZoo);
         animalName = zooKeeperInput.nextLine();
         int location = myAwesomeZoo.findPenNumberOfAnimal(animalName);
-        myAwesomeZoo.getThisPen(location).getAnimalFromPen(animalName).animalInformation();
+        if(location < 0)
+        {
+            System.out.println("We can't find that Adult Animal in the system.");
+            searchOption();
+        }
+        else {
+            System.out.println(myAwesomeZoo.getThisPen(location).getAnimalFromPen(animalName).animalInformation());
+        }
 
-        return myAwesomeZoo.getThisPen(location).getAnimalFromPen(animalName);
     }
 
-    public BabyAnimal searchBabyAnimalMethod()
+    public void searchBabyAnimalMethod()
     {
+        Scanner zooKeeperInput = new Scanner(System.in);
         System.out.println(findAnimalInZoo);
         animalName = zooKeeperInput.nextLine();
         int location = myAwesomeZoo.findPenNumberOfAnimal(animalName);
-        myAwesomeZoo.getThisPen(location).getBabyAnimalFromPen(animalName).animalInformation();
+        if(location < 0)
+        {
+            System.out.println("We can't find that Baby Animal in the system.");
+            searchOption();
+        }
+        else {
+            System.out.println(myAwesomeZoo.getThisPen(location).getBabyAnimalFromPen(animalName).animalInformation());
+        }
 
-        return myAwesomeZoo.getThisPen(location).getBabyAnimalFromPen(animalName);
     }
 
     public void getNumberOfPensInZoo()

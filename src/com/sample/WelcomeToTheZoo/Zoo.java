@@ -13,6 +13,11 @@ public class Zoo {
         zooPens = new ArrayList<Pen>();
     }
 
+    public ArrayList getPens()
+    {
+        return zooPens;
+    }
+
     public void addNewPenToZoo(int penNumber)
     {
         Pen aNewPen = new Pen(penNumber);
@@ -43,15 +48,15 @@ public class Zoo {
         return pensUsed;
     }
 
-    public Pen getThisPen(int penNumber)
+    public Pen getThisPen(int penLocation)
     {
-        int penFound = findAPenInTheZoo(penNumber);
-        return zooPens.get(penFound);
+        return zooPens.get(penLocation);
     }
 
     public void removeAPenFromTheZoo(int penNumberToRemove)
     {
-        Pen penToRemove = getThisPen(penNumberToRemove);
+        int location = findAPenInTheZoo(penNumberToRemove);
+        Pen penToRemove = getThisPen(location);
         zooPens.remove(penToRemove);
     }
 
@@ -66,15 +71,15 @@ public class Zoo {
 
     public int findPenNumberOfAnimal(String animalName)
     {
-        int penNumber = -1;
+        int penLocation = -1;
         for(int i = 0; i < zooPens.size(); i++)
         {
            if(zooPens.get(i).findAnimalInPen(animalName) > -1)
            {
-               penNumber = i;
+               penLocation = i;
            }
         }
-        return penNumber;
+        return penLocation;
     }
 
 

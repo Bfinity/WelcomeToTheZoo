@@ -38,11 +38,13 @@ public class Pen {
             if(animalNameSought.equalsIgnoreCase(aniName))
             {
                 locationOfAnimalInPen = i;
+                break;
             }
             String aniBName = babyAnimalsInPen.get(i).getNameOfAnimal();
             if(animalNameSought.equalsIgnoreCase(aniBName))
             {
                 locationOfAnimalInPen = i;
+                break;
             }
 
         }
