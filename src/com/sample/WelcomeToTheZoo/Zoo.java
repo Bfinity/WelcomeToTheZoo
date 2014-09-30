@@ -33,13 +33,14 @@ public class Zoo {
         return penLocation;
     }
 
-    public void printOutAllPenNumbersUsed()
+    public String printOutAllPenNumbersUsed()
     {
         String pensUsed = "";
         for(Pen aPen: zooPens)
         {
            pensUsed = pensUsed +" " +  String.valueOf(aPen.getPenNumber());
         }
+        return pensUsed;
     }
 
     public Pen getThisPen(int penNumber)
@@ -96,7 +97,7 @@ public class Zoo {
             }
             else
             {
-                System.out.println("There is not a male and a female adult in this pen.");
+                System.out.println("There is not a male and a female adult in this pen. A baby cannot be placed here.");
             }
 
         }

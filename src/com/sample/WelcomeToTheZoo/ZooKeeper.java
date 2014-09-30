@@ -20,10 +20,12 @@ public class ZooKeeper {
             "3: Add a new baby animal ";
     String searchDirections = "You chose the Search option. What are you searching for today? 1: A pen 2: An Adult or Baby Animal ";
     String informationDirections = "You chose Get Zoo Information. What information do you need? 1: Number of Pens in the Zoo " +
-            "2: Number of Adult Animals 3: Number of Baby Animals 4: Total Number of All Animals 5: List of All Animal's Information";
+            "2: Number of Adult Animals 3: Number of Baby Animals 4: Total Number of All Animals 5: List all Pen Numbers In Use 6: List of All Animal's Information";
     String removeDirections = "You chose the Remove option. What do you need to remove today? 1: A Pen 2: An Adult Animal 3: A Baby Animal";
     String penAddGreeting ="New Pen? Got it!";
     String penAccess = "Please enter the Pen Number.";
+    String penCreatedStart = "Great! You created a new Pen. You now have ";
+    String penCreatedEnd = " Pens to house your animals!";
     String addAnimalGreeting = "Okay! Let's add a new animal!";
     String addAnimalName = "Please enter the animal's name";
     String addANewAnimalSpecies = "Please enter the animal's species:";
@@ -39,6 +41,7 @@ public class ZooKeeper {
     String numberOfAdults = " number of Adult Animals in the Zoo.";
     String numberOfBabies = " number of Baby Animals in the Zoo.";
     String numberOfAnimalsTotal = " number of Animals in Total in the Zoo.";
+    String numberOfPensInUse = "The following is a list of all Pen Numbers Currently In Use";
     String printOutInformation = "The following is detailed information about all the animals in the zoo:";
     String defaultStatement = "That option is not available.";
     String exitStatement = "Thank you for using EZoo!";
@@ -91,9 +94,7 @@ public class ZooKeeper {
         switch(checkForValidChoice(3))
         {
             case 1:
-                System.out.println(penAddGreeting);
-                System.out.println(penAccess);
-                myAwesomeZoo.addNewPenToZoo(zooKeeperInput.nextInt());
+                addANewPen();
                 zooOptions();
                 break;
 
@@ -147,7 +148,7 @@ public class ZooKeeper {
     public void zooInformationOption()
     {
         System.out.println(informationDirections);
-        switch (checkForValidChoice(5))
+        switch (checkForValidChoice(6))
         {
             case 1:
                 getNumberOfPensInZoo();
@@ -170,6 +171,11 @@ public class ZooKeeper {
                 break;
 
             case 5:
+                getListOfAllPenNumbersInUse();
+                zooOptions();
+                break;
+
+            case 6:
                 printOutAllAnimalInformation();
                 zooOptions();
                 break;
@@ -245,8 +251,17 @@ public class ZooKeeper {
         return validInt;
     }
 
+    public void addANewPen()
+    {
+        System.out.println(penAddGreeting);
+        System.out.println(penAccess);
+        myAwesomeZoo.addNewPenToZoo(checkForValidInt());
+        System.out.println(penCreatedStart + myAwesomeZoo.getNumberOfPensInZoo() + penCreatedEnd);
+    }
+
     public void addAnAnimalMethod()
     {
+        if(myAwesomeZoo.getNumberOfPensInZoo() > 0){
         System.out.println(addAnimalGreeting);
         System.out.println(addAnimalName);
         Scanner zookeeperInput = new Scanner(System.in);
@@ -260,12 +275,20 @@ public class ZooKeeper {
         anAnimal = new Animal(animalName, animalSpecies, animalGender, animalDiet);
         System.out.println(placeAnimalIntoPen);
         int pen = checkForValidInt();
-        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), anAnimal);
+        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), anAnimal);}
+        else
+        {
+            System.out.println("Every animal needs a home. You must create a pen first.");
+            addOptions();
+        }
 
     }
 
     public void addABabyAnimalMethod()
     {
+        System.out.println(placeAnimalIntoPen);
+        int pen = checkForValidInt();
+        if(myAwesomeZoo.getThisPen(pen).isThereAMaleAndFemaleAdultInPen()){
         System.out.println(addAnimalGreeting);
         System.out.println(addAnimalName);
         Scanner zookeeperInput = new Scanner(System.in);
@@ -279,15 +302,19 @@ public class ZooKeeper {
         System.out.println(addANewAnimalAge);
         int animalAge = checkForValidInt();
         aBabyAnimal = new BabyAnimal(animalName, animalSpecies, animalGender, animalDiet, animalAge);
-        System.out.println(placeAnimalIntoPen);
-        int pen = checkForValidInt();
-        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), aBabyAnimal);
+        myAwesomeZoo.addAnimals(myAwesomeZoo.findAPenInTheZoo(pen), aBabyAnimal);}
+        else
+        {
+            System.out.println("There must be an adult female and male in a pen to place a new baby.");
+            addOptions();
+        }
     }
 
     public void searchPenMethod()
     {
         System.out.println(findAPenInTheZoo);
-        myAwesomeZoo.findAPenInTheZoo(checkForValidInt());
+        int penFound = myAwesomeZoo.findAPenInTheZoo(checkForValidInt());
+        myAwesomeZoo.getThisPen(penFound).listAllBabyAnimalsInPen();
     }
 
     public Animal searchAnimalMethod()
@@ -332,6 +359,12 @@ public class ZooKeeper {
     {
         int numAnimals = myAwesomeZoo.getTotalNumberOfAnimals();
         System.out.println(thereAre + numAnimals + numberOfAnimalsTotal);
+    }
+
+    public void getListOfAllPenNumbersInUse()
+    {
+        System.out.println(numberOfPensInUse);
+        System.out.println( myAwesomeZoo.printOutAllPenNumbersUsed());
     }
 
     public void printOutAllAnimalInformation()
